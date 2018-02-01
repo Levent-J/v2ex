@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.levent_j.v2ex.MainActivity">
+    tools:context="com.levent_j.v2ex.main.MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_main"
         android:text="v2ex demo!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
