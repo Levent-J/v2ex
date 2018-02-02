@@ -1,6 +1,6 @@
 package com.levent_j.v2ex.v2ex.main;
 
-import com.levent_j.v2ex.data.bean.Node;
+import com.levent_j.v2ex.data.Node;
 
 import java.util.List;
 

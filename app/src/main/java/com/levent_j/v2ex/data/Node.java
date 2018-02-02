@@ -1,4 +1,4 @@
-package com.levent_j.v2ex.data.bean;
+package com.levent_j.v2ex.data;
 
 /**
  * @auther : levent_j on 2018/2/1.

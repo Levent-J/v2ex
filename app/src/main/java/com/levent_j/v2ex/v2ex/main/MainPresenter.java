@@ -2,7 +2,7 @@ package com.levent_j.v2ex.v2ex.main;
 
 import com.levent_j.v2ex.base.ActivityEvent;
 import com.levent_j.v2ex.base.BasePresenter;
-import com.levent_j.v2ex.data.bean.Node;
+import com.levent_j.v2ex.data.Node;
 import com.levent_j.v2ex.net.ApiService;
 import com.levent_j.v2ex.utils.MyLog;
 

@@ -1,8 +1,6 @@
 package com.levent_j.v2ex.net;
 
-import com.levent_j.v2ex.data.bean.Node;
-
-import org.reactivestreams.Subscriber;
+import com.levent_j.v2ex.data.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +12,7 @@ import io.reactivex.FlowableOnSubscribe;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
 
 /**
  * @auther : levent_j on 2018/2/1.
@@ -21,16 +20,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiService {
-    private static final String BASE_URL="";
+    private static final String BASE_URL="https://www.v2ex.com/";
     private static ApiService mInstance;
-    private Retrofit client;
+    private Api client;
 
     public ApiService() {
-//        client = new Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        client = retrofit.create(Api.class);
     }
 
     public static ApiService getInstance(){
@@ -45,15 +45,11 @@ public class ApiService {
     }
 
     public Flowable<List<Node>> getNodeList(){
-        final List<Node> list = new ArrayList<>();
-        list.add(new Node());
-        list.add(new Node());
-        list.add(new Node());
-        return Flowable.create(new FlowableOnSubscribe<List<Node>>() {
-            @Override
-            public void subscribe(FlowableEmitter<List<Node>> emitter) throws Exception {
-                emitter.onNext(list);
-            }
-        }, BackpressureStrategy.BUFFER);
+        return client.getNodeList();
+    }
+
+    interface Api{
+        @GET("api/topics/latest.json")
+        Flowable<List<Node>> getNodeList();
     }
 }
