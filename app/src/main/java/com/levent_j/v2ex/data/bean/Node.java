@@ -6,4 +6,5 @@ package com.levent_j.v2ex.data.bean;
  */
 
 public class Node {
+    public String s="hello world";
 }

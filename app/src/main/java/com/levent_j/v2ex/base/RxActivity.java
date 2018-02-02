@@ -56,7 +56,7 @@ public class RxActivity extends AppCompatActivity {
         behaviorSubject.onNext(ActivityEvent.DESTROY);
     }
 
-    protected <T> FlowableTransformer<T,T> bindUntilEvent(final ActivityEvent event){
+    public  <T> FlowableTransformer<T,T> bindUntilEvent(final ActivityEvent event){
         final Flowable<ActivityEvent> flowable = behaviorSubject.filter(new Predicate<ActivityEvent>() {
             @Override
             public boolean test(ActivityEvent activityEvent) throws Exception {
