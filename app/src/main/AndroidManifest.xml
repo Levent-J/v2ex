@@ -20,6 +20,8 @@
 
         </activity>
 
+        <activity android:name=".v2ex.node.NodeDetailActivity"/>
+
     </application>
 
 </manifest>

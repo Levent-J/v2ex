@@ -1,5 +1,6 @@
 package com.levent_j.v2ex.v2ex.main;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -7,6 +8,7 @@ import com.levent_j.v2ex.R;
 import com.levent_j.v2ex.base.BaseActivity;
 import com.levent_j.v2ex.data.NodeModel;
 import com.levent_j.v2ex.utils.MyLog;
+import com.levent_j.v2ex.v2ex.node.NodeDetailActivity;
 
 import java.util.List;
 
@@ -30,7 +32,13 @@ public class MainActivity extends BaseActivity implements IMainView {
 
 
         mNodeListAdapter = new NodeListAdapter(this);
-
+        mNodeListAdapter.setItemClickListener(new NodeListAdapter.ItemClickListener() {
+            @Override
+            public void onClick(NodeModel model) {
+                Intent intent = new Intent(MainActivity.this, NodeDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         mNodeListView.setLayoutManager(new LinearLayoutManager(this));
         mNodeListView.setAdapter(mNodeListAdapter);
 

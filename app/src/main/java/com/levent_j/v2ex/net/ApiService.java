@@ -1,6 +1,9 @@
 package com.levent_j.v2ex.net;
 
+import com.levent_j.v2ex.data.NodeDetailModel;
 import com.levent_j.v2ex.data.NodeModel;
+
+import org.intellij.lang.annotations.Flow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +70,20 @@ public class ApiService {
 //        return client.getNodeList();
     }
 
+    public Flowable<NodeDetailModel> getNodeDetail(){
+        return Flowable.create(new FlowableOnSubscribe<NodeDetailModel>() {
+            @Override
+            public void subscribe(FlowableEmitter<NodeDetailModel> emitter) throws Exception {
+                emitter.onNext(new NodeDetailModel());
+            }
+        },BackpressureStrategy.BUFFER);
+    }
+
     interface Api{
         @GET("api/topics/latest.json")
         Flowable<List<NodeModel>> getNodeList();
+
+        @GET("aaa")
+        Flowable<NodeDetailModel> getNodeDetail();
     }
 }
