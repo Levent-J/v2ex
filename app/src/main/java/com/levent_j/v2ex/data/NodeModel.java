@@ -5,6 +5,6 @@ package com.levent_j.v2ex.data;
  * @desc :
  */
 
-public class Node {
+public class NodeModel {
     public String s="hello world";
 }

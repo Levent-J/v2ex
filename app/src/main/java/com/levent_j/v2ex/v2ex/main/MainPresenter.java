@@ -2,7 +2,7 @@ package com.levent_j.v2ex.v2ex.main;
 
 import com.levent_j.v2ex.base.ActivityEvent;
 import com.levent_j.v2ex.base.BasePresenter;
-import com.levent_j.v2ex.data.Node;
+import com.levent_j.v2ex.data.NodeModel;
 import com.levent_j.v2ex.net.ApiService;
 import com.levent_j.v2ex.utils.MyLog;
 
@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  * @desc :
  */
 
-public class MainPresenter extends BasePresenter{
+public class MainPresenter extends BasePresenter {
 
     private WeakReference<IMainView> mViewRef;
 
@@ -26,10 +26,10 @@ public class MainPresenter extends BasePresenter{
         this.mViewRef = new WeakReference(mViewRef);
     }
 
-    protected void loadNodeList(){
+    protected void loadNodeList() {
         MyLog.d("loadNodeList");
-        if (mViewRef != null&& mViewRef.get()!=null) {
-            mViewRef.get().onGetNodeListSuccess();
+        if (mViewRef == null || mViewRef.get() == null) {
+            return;
         }
         ApiService.getInstance()
                 .getNodeList()
@@ -39,7 +39,11 @@ public class MainPresenter extends BasePresenter{
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        MyLog.d(" "+ ((List<Node>) o).size());
+                        List<NodeModel> result = (List<NodeModel>) o;
+
+                        if (mViewRef != null && mViewRef.get()!=null) {
+                            mViewRef.get().onGetNodeListSuccess(result);
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override

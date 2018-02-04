@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.levent_j.v2ex.v2ex.main.main.MainActivity">
+    tools:context="com.levent_j.v2ex.v2ex.main.MainActivity">
 
-    <Button
-        android:id="@+id/btn_main"
-        android:text="v2ex demo!"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rlv_node_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

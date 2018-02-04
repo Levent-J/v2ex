@@ -1,6 +1,6 @@
 package com.levent_j.v2ex.net;
 
-import com.levent_j.v2ex.data.Node;
+import com.levent_j.v2ex.data.NodeModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +44,31 @@ public class ApiService {
         return mInstance;
     }
 
-    public Flowable<List<Node>> getNodeList(){
-        return client.getNodeList();
+    public Flowable<List<NodeModel>> getNodeList(){
+        //test
+        final List<NodeModel> list = new ArrayList<>();
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+        list.add(new NodeModel());
+
+        return Flowable.create(new FlowableOnSubscribe<List<NodeModel>>() {
+            @Override
+            public void subscribe(FlowableEmitter<List<NodeModel>> emitter) throws Exception {
+                emitter.onNext(list);
+            }
+        }, BackpressureStrategy.BUFFER);
+//        return client.getNodeList();
     }
 
     interface Api{
         @GET("api/topics/latest.json")
-        Flowable<List<Node>> getNodeList();
+        Flowable<List<NodeModel>> getNodeList();
     }
 }

@@ -1,18 +1,21 @@
 package com.levent_j.v2ex.v2ex.main;
 
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.levent_j.v2ex.R;
 import com.levent_j.v2ex.base.BaseActivity;
-import com.levent_j.v2ex.data.Node;
+import com.levent_j.v2ex.data.NodeModel;
 import com.levent_j.v2ex.utils.MyLog;
 
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
-    private Button button;
+    private RecyclerView mNodeListView;
+
+    private NodeListAdapter mNodeListAdapter;
+
     private MainPresenter mainPresenter;
 
     @Override
@@ -23,27 +26,34 @@ public class MainActivity extends BaseActivity implements IMainView {
 
     @Override
     protected void init() {
-        button = findViewById(R.id.btn_main);
+        mNodeListView = findViewById(R.id.rlv_node_list);
+
+
+        mNodeListAdapter = new NodeListAdapter(this);
+
+        mNodeListView.setLayoutManager(new LinearLayoutManager(this));
+        mNodeListView.setAdapter(mNodeListAdapter);
 
         mainPresenter = new MainPresenter(this);
 
         addPresenter(mainPresenter);
+
+        initData();
+    }
+
+    private void initData() {
+        mainPresenter.loadNodeList();
     }
 
     @Override
     protected void setClickListener() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainPresenter.loadNodeList();
-            }
-        });
+
     }
 
+
     @Override
-    public List<Node> onGetNodeListSuccess() {
-        MyLog.d("onGetNodeListSuccess");
-        return null;
+    public void onGetNodeListSuccess(List<NodeModel> list) {
+        mNodeListAdapter.addData(list);
     }
 
     @Override

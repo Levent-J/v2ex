@@ -1,6 +1,6 @@
 package com.levent_j.v2ex.v2ex.main;
 
-import com.levent_j.v2ex.data.Node;
+import com.levent_j.v2ex.data.NodeModel;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface IMainView {
-    List<Node> onGetNodeListSuccess();
+    void onGetNodeListSuccess(List<NodeModel> list);
 
     void onGetNodeListFailed();
 }
