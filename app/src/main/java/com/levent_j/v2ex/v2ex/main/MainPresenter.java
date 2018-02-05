@@ -3,6 +3,7 @@ package com.levent_j.v2ex.v2ex.main;
 import com.levent_j.v2ex.base.ActivityEvent;
 import com.levent_j.v2ex.base.BasePresenter;
 import com.levent_j.v2ex.data.NodeModel;
+import com.levent_j.v2ex.data.RootModel;
 import com.levent_j.v2ex.net.ApiService;
 import com.levent_j.v2ex.utils.MyLog;
 
@@ -39,7 +40,7 @@ public class MainPresenter extends BasePresenter {
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        List<NodeModel> result = (List<NodeModel>) o;
+                        List<RootModel> result = (List<RootModel>) o;
 
                         if (mViewRef != null && mViewRef.get()!=null) {
                             mViewRef.get().onGetNodeListSuccess(result);

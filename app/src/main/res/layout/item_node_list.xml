@@ -1,11 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/colorWhite"
+    >
+
+    <!--标题-->
+    <TextView
+        android:id="@+id/tv_root_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/colorTitle"
+        android:textSize="22sp"
+        tools:text="title"/>
+
+    <!--专区-->
+    <TextView
+        android:id="@+id/tv_root_node"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_root_node_avatar"
+        android:layout_alignTop="@+id/iv_root_node_avatar"
+        android:layout_below="@+id/tv_root_title"
+        android:layout_toLeftOf="@+id/iv_root_node_avatar"
+        android:gravity="center"
+        android:textSize="14sp"
+        tools:text="node"/>
+
+    <!--专区img-->
+    <ImageView
+        android:id="@+id/iv_root_node_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_root_title"/>
+
+    <ImageView
+        android:id="@+id/iv_root_user_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv_root_title"
+        tools:text="author"/>
 
     <TextView
-        android:id="@+id/tv_node"
-        android:text="hahaha"
+        android:id="@+id/tv_root_username"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_root_title"
+        android:layout_toRightOf="@+id/iv_root_user_avatar"
+        android:layout_alignTop="@+id/iv_root_user_avatar"
+        android:layout_alignBottom="@+id/iv_root_user_avatar"
+        android:textSize="14sp"
+        tools:text="author"/>
+
+    <TextView
+        android:id="@+id/tv_root_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_root_username"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textSize="16sp"
+        tools:text="content"/>
+
+    <TextView
+        android:id="@+id/tv_root_replies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_root_content"
+        android:textSize="14sp"
+        tools:text="reply:10"/>
+
+    <TextView
+        android:id="@+id/tv_root_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_root_content"
+        android:textSize="14sp"
+        tools:text="2018-1-1"/>
 </RelativeLayout>

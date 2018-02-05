@@ -2,6 +2,7 @@ package com.levent_j.v2ex.net;
 
 import com.levent_j.v2ex.data.NodeDetailModel;
 import com.levent_j.v2ex.data.NodeModel;
+import com.levent_j.v2ex.data.RootModel;
 
 import org.intellij.lang.annotations.Flow;
 
@@ -47,27 +48,8 @@ public class ApiService {
         return mInstance;
     }
 
-    public Flowable<List<NodeModel>> getNodeList(){
-        //test
-        final List<NodeModel> list = new ArrayList<>();
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-        list.add(new NodeModel());
-
-        return Flowable.create(new FlowableOnSubscribe<List<NodeModel>>() {
-            @Override
-            public void subscribe(FlowableEmitter<List<NodeModel>> emitter) throws Exception {
-                emitter.onNext(list);
-            }
-        }, BackpressureStrategy.BUFFER);
-//        return client.getNodeList();
+    public Flowable<List<RootModel>> getNodeList(){
+        return client.getNodeList();
     }
 
     public Flowable<NodeDetailModel> getNodeDetail(){
@@ -81,7 +63,7 @@ public class ApiService {
 
     interface Api{
         @GET("api/topics/latest.json")
-        Flowable<List<NodeModel>> getNodeList();
+        Flowable<List<RootModel>> getNodeList();
 
         @GET("aaa")
         Flowable<NodeDetailModel> getNodeDetail();

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.levent_j.v2ex.R;
 import com.levent_j.v2ex.base.BaseActivity;
 import com.levent_j.v2ex.data.NodeModel;
+import com.levent_j.v2ex.data.RootModel;
 import com.levent_j.v2ex.utils.MyLog;
 import com.levent_j.v2ex.v2ex.node.NodeDetailActivity;
 
@@ -34,7 +35,7 @@ public class MainActivity extends BaseActivity implements IMainView {
         mNodeListAdapter = new NodeListAdapter(this);
         mNodeListAdapter.setItemClickListener(new NodeListAdapter.ItemClickListener() {
             @Override
-            public void onClick(NodeModel model) {
+            public void onClick(RootModel model) {
                 Intent intent = new Intent(MainActivity.this, NodeDetailActivity.class);
                 startActivity(intent);
             }
@@ -60,7 +61,7 @@ public class MainActivity extends BaseActivity implements IMainView {
 
 
     @Override
-    public void onGetNodeListSuccess(List<NodeModel> list) {
+    public void onGetNodeListSuccess(List<RootModel> list) {
         mNodeListAdapter.addData(list);
     }
 
